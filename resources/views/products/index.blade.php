@@ -34,10 +34,10 @@
                             @forelse ($products as $product)
                             <tr>
                                 <td class="text-center">
-                                    <img src="{{ asset('/storage/images/'.$product->image) }}" class="rounded" style="width: 150px">
+                                    <img src="{{ asset('/storage/image/'.$product->image) }}" class="rounded" style="width: 150px">
                                 </td>
                                 <td>{{ $product->title }}</td>
-                                <td>{{ $product->supplier_name1 }}</td>
+                                <td>{{ $product->supplier_name }}</td>
                                 <td>{{ $product->product_category_name1 }}</td>
                                 <td>{{ 'Rp ' . number_format($product->price,2,',','.') }}</td>
                                 <td>{{ $product->stock }}</td>
