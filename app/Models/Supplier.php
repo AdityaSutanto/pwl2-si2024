@@ -9,8 +9,8 @@ class Supplier extends Model
     //
     protected $table = 'supplier';
 
-    public function get_category_product(){
-        $sql = $this->select("supplier.*");
+    public function get_supplier(){
+        $sql = $this->select("*");
         return $sql;
     }
 }

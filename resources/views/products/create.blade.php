@@ -31,8 +31,8 @@
 
                         {{-- Kategori Supplier --}}
                         <div class="form-group mb-3">
-                            <label for="supplier_id" class="font-weight-bold">Product Category</label>
-                            <select class="form-control" id="supplier_id" name="supplier_id">
+                            <label for="supplier_id" class="font-weight-bold">Supplier Category</label>
+                            <select class="form-control" id="supplier" name="supplier">
                                 <option value="">-- Select Supplier --</option>
                                 @foreach ($data['suppliers'] as $supplier)
                                     <option value="{{ $supplier->id }}">{{ $supplier->supplier_name }}</option>
