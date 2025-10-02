@@ -42,12 +42,12 @@
                                 <td>{{ 'Rp ' . number_format($product->price,2,',','.') }}</td>
                                 <td>{{ $product->stock }}</td>
                                 <td class="text-center">
-                                    <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('products.destroy', $product->id) }}" method="POST">
+                                    <form id="delete-form-{{ $product->id }}" action="{{ route('products.destroy', $product->id) }}" method="POST" style="display: inline;">
                                         <a href="{{ route('products.show', $product->id) }}" class="btn btn-sm btn-dark">SHOW</a>
                                         <a href="{{ route('products.edit', $product->id) }}" class="btn btn-sm btn-primary">EDIT</a>
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-sm btn-danger">HAPUS</button>
+                                        <button type="button" class="btn btn-sm btn-danger" onclick="deleteConfirm({{ $product->id }}, '{{ $product->title }}')">HAPUS</button>
                                     </form>
                                 </td>
                             </tr>
@@ -69,25 +69,24 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script>
-    // message with sweetalert
-    @if(session('success'))
-        Swal.fire({
-            icon: "success",
-            title: "BERHASIL",
-            text: "{{ session('success') }}",
-            showConfirmButton: false,
-            timer: 2000
-        });
-    @elseif(session('error'))
-        Swal.fire({
-            icon: "error",
-            title: "GAGAL!",
-            text: "{{ session('error') }}",
-            showConfirmButton: false,
-            timer: 2000
-        });
-    @endif
+    function deleteConfirm(id, title) {
+    Swal.fire({
+        title: 'Apakah Anda Yakin Menghapus ' + title + '?',
+        text: "Data akan dihapus permanen!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',   
+        confirmButtonText: 'Ya, Hapus!',
+        cancelButtonText: 'Batal'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            document.getElementById('delete-form-' + Id).submit();
+        }
+    });
+}
 </script>
+
 
 </body>
 </html>

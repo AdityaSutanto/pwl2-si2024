@@ -39,4 +39,31 @@ class Product extends Model
             'stock' => $request->stock,
         ]);
     }
+
+    //tambah edit data
+    public static function updateProduct ($id, $request, $image = null)
+    {
+        $product = self::find($id);
+
+        if ($product) {
+            $data = [
+                'title' => $request['title'],
+                'supplier_id' => $request['supplier_id'],
+                'product_category_id' => $request['product_category_id'],
+                'description' => $request['description'],
+                'price' => $request['price'],
+                'stock' => $request['stock'],
+            ];
+
+        if (!empty($image)) {   
+            $data['image']= $image;
+        }
+
+        $product-> update($data);
+        return $product;
+
+        }else{
+            return "Data tidak ditemukan";
+        }
+    }
 };
